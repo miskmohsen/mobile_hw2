@@ -2,36 +2,54 @@ package com.example.hw1
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class MenuActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.menu_activity)
+        setContentView(R.layout.activity_menu)
 
-        val btnButtonMode: Button = findViewById(R.id.button_mode)
-        val btnSensorMode: Button = findViewById(R.id.sensor_mode)
-        val btnHighScores: Button = findViewById(R.id.high_scores)
+        val fast_button = findViewById<Button>(R.id.button_fast)
+        val slow_button = findViewById<Button>(R.id.button_slow)
+        val sensor_mode = findViewById<Button>(R.id.sensor_mode)
+        val history_boardd = findViewById<Button>(R.id.history_board)
 
-        btnButtonMode.setOnClickListener {
-            // הפניה לפעילות המשחק במצב לחצנים
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("CONTROL_MODE", "BUTTONS")
-            startActivity(intent)
+        fast_button.setOnClickListener {
+            val fast_button_intent = Intent(this, MainActivity::class.java)
+            fast_button_intent.putExtra("Mode", "fast")
+            startActivity(fast_button_intent)
+            finish()
         }
 
-        btnSensorMode.setOnClickListener {
-            // הפניה לפעילות המשחק במצב סנסורים
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("CONTROL_MODE", "SENSORS")
-            startActivity(intent)
+
+
+        slow_button.setOnClickListener {
+            val slow_button_intent = Intent(this, MainActivity::class.java)
+            slow_button_intent.putExtra("Mode", "slow")
+            startActivity(slow_button_intent)
+            finish()
         }
 
-        btnHighScores.setOnClickListener {
-            // הפניה למסך טבלת השיאים
-            startActivity(Intent(this, ScoresActivity::class.java))
+
+
+        sensor_mode.setOnClickListener {
+            val sensor_mode_intent = Intent(this, MainActivity::class.java)
+            sensor_mode_intent.putExtra("Mode", "sensor")
+            startActivity(sensor_mode_intent)
+            finish()
         }
+
+        history_boardd.setOnClickListener {
+            val history_board_intent = Intent(this, HistoryBoardActivity::class.java)
+            startActivity(history_board_intent)
+            finish()
+        }
+
+
     }
+}
 }
